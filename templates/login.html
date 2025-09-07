@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="../static/bootstrap/images/login.png" alt="login images" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <hr>
+                {% if messages %}
+
+                {% for msg in messages %}
+
+
+                <div class="alert alert-danger">
+                    {{msg}}
+  
+                 </div>
+  
+                 {% endfor %}
+  
+                 {% endif %}
+
+
+             <div class="col-6">
+                <div class="mb-3">
+                     <label for="username" class="form-label">Username</label>
+                     <input type="text" name="username" id="username" class="form-control"> 
+                </div>
+             </div>
+             <div class="col-6">
+                <div class="mb-3">
+                     <label for="password1" class="form-label">Password</label>
+                     <input type="password" name="password1" id="password1" class="form-control"> 
+                </div>
+             </div>
+             <input type="submit" value="login" class="btn btn-primary">
+            </form> 
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<h1 class="text-center text-primary">view Product</h1>
+<hr>
+<div class="container mx-5">
+    <div class="row">
+        <div class="col-6">
+        <img src="{{product.image.url}}" alt="productImage" class="img-fluid">
+    </div>
+    <div class="col-6 p-5">
+        <h1>Name : {{product.name}}</h1>
+        <h3>price : Rs. {{product.price}}</h3>
+        <p>Description : {{ product.description}}</p>
+        <a href="{% url 'addToCart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
+
+
+    </div>
+        </div>
+</div>
+<hr>
+<h1>Feedback</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form action="{% url 'addFeedback' product.id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <input type="submit" value="submit" class="btn btn-primary">
+            </form>
+
+        </div>
+
+        <div class="col-6 overflow-auto" style="height: 300px">
+
+            {% for feedback in feedbacks %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">{{feedback.user.username}}</div>
+                    <div class="card-text">{{feedback.feedback_msg}}</div>
+                    <hr>
+                    <div class="card-text">
+                        {{feedback.updeated_datetime}}    
+                    </div>
+                    <div class="catd-text text-end">
+                        <a href="{% url 'updateFeedback' feedback.id %}">Edit</a>
+                        <a href="{% url 'delete_Feedback' feedback.id %}">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

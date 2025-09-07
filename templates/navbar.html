@@ -1,0 +1,28 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <img src="../static/bootstrap/images/icon.webp" alt="icon" width="60px"  height="60px" class="rounded-4 shadow-lg img-fluid">
+          <h3 class="text-primary m-2">Grocery Shop</h3>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="{% url 'main' %}" class="nav-link px-2">Features</a></li>
+        <li><a href="#" class="nav-link px-2">Pricing</a></li>
+        <li><a href="#" class="nav-link px-2">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2">About</a></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        {% if user.is_authenticated %}
+        <button type="button" class="btn btn-outline-primary me-2">{{request.user}}</button>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-primary">logout</button></a>
+        {% else %}
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <a href="{% url 'signup' %}"><button type="button" class="btn btn-primary">signup</button></a>
+        {% endif %}
+      </div>
+    </header>
+ </div>
